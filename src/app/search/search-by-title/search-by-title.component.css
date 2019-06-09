@@ -1,0 +1,13 @@
+.btn-heading-father {
+  position: relative;
+}
+
+.btn-heading-child {
+  position:absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

@@ -1,0 +1,24 @@
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Doi</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Scopus</th>
+      <th scope="col">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pub of pubs | 
+                paginate: { itemsPerPage: pagination.itemsPerPage,
+                            currentPage : pagination.currentPage}; 
+                let i = index;"
+                (click)="onSelected(pub.doi)">
+        <td>{{pub.doi}}</td>
+        <td>{{pub.title}}</td>
+        <td>{{pub.author}}</td>
+        <td>{{pub.linkWeb}}</td>
+        <td>{{pub.linkDownload}}</td>
+    </tr>
+  </tbody>
+</table>

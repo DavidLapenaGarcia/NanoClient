@@ -1,0 +1,31 @@
+<form #AbstractEntryForm="ngForm" (submit)="onSelected()" novalidate>
+  <div class="card mt-3 btn-heading-father">
+    <div class="row no-gutters ">
+
+      <div class="col-3  panel-body ">
+        <a routerLink="/search/byAbstract">
+          <div class="row no-gutters">
+            <button type="submit" class="btn-default btn-block btn-heading-child">
+              Search by Abstract
+            </button>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-8 card-body p-0">
+        <textarea type="text" class="form-control" value="{{abstract}}" #pAbstract="ngModel"
+          [(ngModel)]="abstract" name="pAbstract btn-heading-father" required>
+        </textarea>
+      </div>
+
+      <div class="col-1 panel-body ">
+          <button type="submit" class="btn-default btn-block btn-heading-child "  name="button"
+            [disabled]="AbstractEntryForm.invalid && validAbstract()">
+            Go
+          </button>
+      </div>
+
+    </div>
+  </div>
+
+</form>

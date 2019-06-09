@@ -1,0 +1,38 @@
+
+<div  class="container-fluid p-0 mt-5"
+      *ngIf="pub">
+  <div class="row" style="background:yellowgreen;">
+    <div class="col-md-12 ">
+
+      <div class="card-group">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">{{ pub.title }}</h5>
+          </div>
+          <div class="card-body">
+            <p>
+              <a *ngFor="let auth of pub.authors">
+                {{auth.firstname}} {{auth.auid}} ,
+              </a>
+            </p>
+            <p class="card-text">{{ pub.abstract}}</p>
+          </div>
+          <div class="card-footer">
+            <small  class="text-muted"
+                    *ngFor="let kw of pub.keywords">
+              <div class="input-group input-group-sm mb-3 col-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">{{kw.totem}}</span>
+                 </div>
+                <input type="text" class="form-control" aria-label="Small" 
+                  aria-describedby="inputGroup-sizing-sm readonly"
+                  placeholder="{{kw.contented}}" readonly>
+              </div>
+            </small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

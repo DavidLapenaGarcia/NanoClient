@@ -1,0 +1,38 @@
+<form #IdentifierEntryForm="ngForm" (submit)="onSelected()" novalidate>
+  <div class="card mt-3">
+    <div class="row no-gutters ">
+
+      <div class="col-3  panel-body ">
+          <div class="row no-gutters">
+            <button type="submit" class="btn-default btn-block btn-heading-child">
+               Search by Identifier
+            </button>
+          </div>
+      </div>
+      <div class="col-8 card-body btn-heading-father p-0">
+        <div class="input-group input-group-lg">
+          <select class="form-control" 
+                  #pIdentifiers="ngModel" 
+                  [(ngModel)]="identifierType" 
+                  name="pIdentifiers"
+                    required>
+            <option *ngFor="let type of identifierTypes; let i = index" [value]="i"
+              [selected]="type == identifierType ">
+              {{ type }}
+            </option>
+          </select>
+          <input type="text" class="form-control " value="{{identifier}}" #pIdentifier="ngModel" [(ngModel)]="identifier"
+            name="pIdentifier">
+        </div>
+      </div>
+      <div class="col-1 panel-body ">
+        <button type="submit" class="btn-default btn-block btn-heading-child " name="button"
+          [disabled]="IdentifierEntryForm.invalid && validIdentifier()">
+          Go
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</form>

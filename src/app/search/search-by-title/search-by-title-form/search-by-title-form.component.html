@@ -1,0 +1,29 @@
+<form #TitleEntryForm="ngForm" (submit)="onSelected()" novalidate>
+
+  <div class="card mt-3">
+    <div class="row no-gutters ">
+
+      <div class="col-3  panel-body ">
+        <div class="row no-gutters">
+          <button type="submit" class="btn-default btn-block btn-heading-child">
+            Search byTitle
+          </button>
+        </div>
+      </div>
+      <div class="col-8 card-body btn-heading-father p-0">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control " value="{{title}}" #pTitle="ngModel"
+            [(ngModel)]="title" name="pTitle" required>
+        </div>
+      </div>
+      <div class="col-1 panel-body ">
+        <button type="submit" class="btn-default btn-block btn-heading-child " name="button"
+          [disabled]="TitleEntryForm.invalid">
+          Go
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</form>
