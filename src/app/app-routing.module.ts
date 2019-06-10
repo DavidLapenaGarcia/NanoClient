@@ -18,12 +18,21 @@ import { SearchByAuthorComponent } from './search/search-by-author/search-by-aut
 import { SearchByTitleComponent } from './search/search-by-title/search-by-title.component';
 import { IdentifierDetailComponent } from './search/search-by-identifier/identifier-detail/identifier-detail.component';
 import { TitleListComponent } from './search/search-by-title/title-list/title-list.component';
+import { RegisterComponent } from './main-page/register/register.component';
+import { LoginComponent } from './main-page/login/login.component';
+
+import { AuthGuard } from './shared/guards/auth.guard';
+
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/welcome', pathMatch: 'full' },
-  { path: 'welcome', component: MainPageComponent},
-  { path: 'find', component: FindComponent, children: [
+  {path: '', redirectTo: '', pathMatch: 'full'},
+  { path: '', component: MainPageComponent, children: [
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+    ]},
+
+  { path: 'find', component: FindComponent,  canActivate: [AuthGuard], children: [
     {path: '', component: FindMainComponent, children: [
         {path: '', component: FindListComponent},
         {path: ':identifier', component: FindDetailComponent}
@@ -31,7 +40,7 @@ const routes: Routes = [
     ]
   },
 
-  { path: 'search', component: SearchComponent, children: [
+  { path: 'search', component: SearchComponent,  canActivate: [AuthGuard], children: [
         {path: '', component: SearchMenuComponent},
         {path: 'byIdentifier', component: SearchByIdentifierComponent, children: [
             {path: ':identifierType/:identifier', component: IdentifierDetailComponent},

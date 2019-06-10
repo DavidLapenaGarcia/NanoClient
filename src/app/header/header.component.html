@@ -7,37 +7,40 @@
     <div class=" navbar">
 
       <ul class="navbar-nav navbar-left">
-      <!-- Before video 147.0 Adding Navigation to the App
+        <!-- Before video 147.0 Adding Navigation to the App
         <li><a class="nav-link" href="#" (click)="onSelect('recipe')" >Recipes</a></li>
         <li><a class="nav-link" href="#" (click)="onSelect('shopping-list')" >Shopping List</a></li>  
       -->
         <li routerLinkActive="active">
-          <a class="nav-link" 
-              routerLink="find" 
-              routerLinkActive="router-link-active"
-                > Find local Publication </a>
+          <a class="nav-link" routerLink="find" routerLinkActive="router-link-active"> Find local Publication </a>
         </li>
         <li routerLinkActive="active">
-          <a class="nav-link"
-              routerLink="/search" 
-              routerLinkActive="active"
-                > Search new Publication </a>
-        </li> 
+          <a class="nav-link" routerLink="/search" routerLinkActive="active"> Search new Publication </a>
+        </li>
       </ul>
 
       <ul class=" navbar-nav navbar-right ">
         <li class="dropdown" appDropdown>
-          <a style="cursor: pointer;" class="dropdown-toggle" role="button" 
-          id="dropdownMenuButton" data-toggle="dropdown" 
-          aria-haspopup="true" aria-expanded="false">
-              User (TODO)<span class="caret"></span>
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            User
+            <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item">Logout (TODO)</a></li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/register">Register</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/login">Logout 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">Logout 2</a>
+            </li>
+
           </ul>
         </li>
       </ul>
-
     </div>
   </div>
 </nav>

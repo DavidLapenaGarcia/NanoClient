@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../shared/authentication.service';
+import { UserService } from '../services/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-page',
@@ -6,10 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+  currentUser: any;
+  users = [];
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userService: UserService
+  ) {
+    this.currentUser = this.authenticationService.currentUserValue;
+  }
 
   ngOnInit() {
+    this.loadAllUsers();
+  }
+
+  deleteUser(id: number) {
+    this.userService.delete(id)
+      .pipe(first())
+      .subscribe(() => this.loadAllUsers());
+  }
+
+  private loadAllUsers() {
+    this.userService.getAll()
+      .pipe(first())
+      .subscribe(users => this.users = users);
   }
 
 }

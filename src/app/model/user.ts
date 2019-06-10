@@ -1,4 +1,6 @@
-export class Keyword {
+
+export class User {
+    
     public userId: number;
     public mail: string;
     public password: string;

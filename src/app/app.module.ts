@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header/header.component';
 import { FindComponent } from './find/find.component';
@@ -39,7 +39,13 @@ import { TitleListComponent } from './search/search-by-title/title-list/title-li
 import { TitleDetailComponent } from './search/search-by-title/title-detail/title-detail.component';
 import { PublicationAPIService } from './services/publication-api.service';
 import { MessageService } from './services/message-service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './main-page/login/login.component';
+import { RegisterComponent } from './main-page/register/register.component';
+import { fakeBackendProvider } from './services/fake-backend';
+import { JwtInterceptor } from './util/jwt.interceptor';
+import { ErrorInterceptor } from './util/error.interceptor';
+import { AlertComponent } from './shared/alert/alert.component';
 
 
 @NgModule({
@@ -71,14 +77,18 @@ import { HttpClientModule } from '@angular/common/http';
     AbstractListComponent,
     AuthorsListComponent,
     TitleListComponent,
-    TitleDetailComponent
+    TitleDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxPaginationModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     PublicationService,
@@ -86,6 +96,10 @@ import { HttpClientModule } from '@angular/common/http';
     FilterService,
     PublicationAPIService,
     MessageService,
+    fakeBackendProvider,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

@@ -28,10 +28,9 @@ export class PublicationAPIService {
 
 
   getAllPublications(): Observable<any> {
-    let  url = '&option=list';
-    url = this.wsUrl + url;
-    
-    return this.http.get(url)
+    let  serviceName = '&option=list';
+    // alert(url);
+    return this.http.get(this.wsUrl + serviceName)
       .pipe( catchError( this.handleError<any>('getAllPublications', []) ));
   }
 
