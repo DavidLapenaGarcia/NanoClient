@@ -31,6 +31,7 @@ export class PublicationService{
          .subscribe(
              (ps: any) => {
                this.pubs = ps;
+               console.log(ps);
               // this.pubsChanged.next( this.pubs.slice() );
              }
          );
