@@ -1,86 +1,47 @@
-import { FilterService } from './services/filter.service';
-import { FormsInputsService } from './services/forms-inputs.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { HeaderComponent } from './header/header.component';
-import { FindComponent } from './find/find.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { SearchComponent } from './search/search.component';
-import { PublicationListComponent } from './util/templates/publication-list/publication-list.component';
-import { PublicationDetailComponent } from './util/templates/publication-detail/publication-detail.component';
-import { SearchByAbstractComponent } from './search/search-by-abstract/search-by-abstract.component';
-import { SearchByAuthorComponent } from './search/search-by-author/search-by-author.component';
-import { SearchByTitleComponent } from './search/search-by-title/search-by-title.component';
-import { SearchByIdentifierComponent } from './search/search-by-identifier/search-by-identifier.component';
-import { SearchMenuComponent } from './search/search-menu/search-menu.component';
-import { SearchByAbstractFormComponent } from './search/search-by-abstract/search-by-abstract-form/search-by-abstract-form.component';
-import { SearchByAuthorFormComponent } from './search/search-by-author/search-by-author-form/search-by-author-form.component';
-// tslint:disable-next-line:max-line-length
-import { SearchByIdentifierFormComponent } from './search/search-by-identifier/search-by-identifier-form/search-by-identifier-form.component';
-import { SearchByTitleFormComponent } from './search/search-by-title/search-by-title-form/search-by-title-form.component';
-import { PublicationService } from './services/publications.service';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { FindFilterFormComponent } from './find/find-filter-form/find-filter-form.component';
-import { FooterComponent } from './footer/footer.component';
-import { FindMainComponent } from './find/find-main/find-main.component';
-import { FindListComponent } from './find/find-main/find-list/find-list.component';
-import { FindDetailComponent } from './find/find-main/find-detail/find-detail.component';
-import { IdentifierDetailComponent } from './search/search-by-identifier/identifier-detail/identifier-detail.component';
-import { AbstractDetailComponent } from './search/search-by-abstract/abstract-detail/abstract-detail.component';
-import { AbstractListComponent } from './search/search-by-abstract/abstract-list/abstract-list.component';
-import { AuthorsListComponent } from './util/templates/authors-list/authors-list.component';
-import { TitleListComponent } from './search/search-by-title/title-list/title-list.component';
-import { TitleDetailComponent } from './search/search-by-title/title-detail/title-detail.component';
-import { PublicationAPIService } from './services/publication-api.service';
-import { MessageService } from './services/message-service.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoginComponent } from './main-page/login/login.component';
-import { RegisterComponent } from './main-page/register/register.component';
-import { fakeBackendProvider } from './services/fake-backend';
-import { JwtInterceptor } from './util/jwt.interceptor';
-import { ErrorInterceptor } from './util/error.interceptor';
-import { AlertComponent } from './shared/alert/alert.component';
+
+import { AppComponent } from './app.component';
+
+import { MainPageComponent, LoginComponent, RegisterComponent} from './main-page';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
+import { FindComponent, FindFilterFormComponent, FindMainComponent, FindListComponent, FindDetailComponent  } from './find';
+import { SearchComponent } from './search/search.component';
+import { SearchMenuComponent } from './search/search-menu/search-menu.component';
+import { SearchByAbstractComponent, SearchByAbstractFormComponent, AbstractDetailComponent, AbstractListComponent } from './search/search-by-abstract/';
+import { SearchByAuthorComponent, SearchByAuthorFormComponent } from './search/search-by-author';
+import { SearchByTitleComponent, SearchByTitleFormComponent, TitleListComponent, TitleDetailComponent } from './search/search-by-title';
+import { SearchByIdentifierComponent, SearchByIdentifierFormComponent, IdentifierDetailComponent } from './search/search-by-identifier';
+
+import { PublicationService, PublicationAPIService, MessageService, fakeBackendProvider, FilterService, FormsInputsService} from './services';
+import { DropdownDirective, AlertComponent } from './shared';
+import { AuthorsListComponent, PublicationListComponent, PublicationDetailComponent, JwtInterceptor, ErrorInterceptor } from './util';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainPageComponent, LoginComponent, RegisterComponent,
     HeaderComponent,
-    FindComponent,
-    MainPageComponent,
-    SearchComponent,
-    PublicationListComponent,
-    PublicationDetailComponent,
-    SearchByAbstractComponent,
-    SearchByAuthorComponent,
-    SearchByTitleComponent,
-    SearchByIdentifierComponent,
-    SearchMenuComponent,
-    SearchByAbstractFormComponent,
-    SearchByAuthorFormComponent,
-    SearchByIdentifierFormComponent,
-    SearchByTitleFormComponent,
-    DropdownDirective,
-    FindFilterFormComponent,
     FooterComponent,
-    FindMainComponent,
-    FindListComponent,
-    FindDetailComponent,
-    IdentifierDetailComponent,
-    AbstractDetailComponent,
-    AbstractListComponent,
-    AuthorsListComponent,
-    TitleListComponent,
-    TitleDetailComponent,
-    LoginComponent,
-    RegisterComponent,
-    AlertComponent,
+    FindComponent, FindFilterFormComponent, FindMainComponent, FindListComponent, FindDetailComponent,
+    FindComponent,
+    SearchComponent,
+    SearchMenuComponent,
+    SearchByAbstractComponent, SearchByAbstractFormComponent, AbstractDetailComponent, AbstractListComponent,
+    SearchByAuthorComponent, SearchByAuthorFormComponent,
+    SearchByTitleComponent, SearchByTitleFormComponent, TitleListComponent, TitleDetailComponent,
+    SearchByIdentifierComponent, SearchByIdentifierFormComponent, IdentifierDetailComponent,
+    DropdownDirective, AlertComponent,
+    AuthorsListComponent, PublicationListComponent, PublicationDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +52,6 @@ import { AlertComponent } from './shared/alert/alert.component';
     ReactiveFormsModule,
   ],
   providers: [
-    PublicationService,
     FormsInputsService,
     FilterService,
     PublicationAPIService,
@@ -99,7 +59,8 @@ import { AlertComponent } from './shared/alert/alert.component';
     fakeBackendProvider,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+    fakeBackendProvider,// FIXME: declared again below to prevent bug
+    PublicationService,
   ],
   bootstrap: [AppComponent]
 })

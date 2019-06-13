@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../shared/authentication.service';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../services';
 
 @Component({
   selector: 'app-main-page',

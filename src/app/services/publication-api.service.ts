@@ -1,38 +1,57 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message-service.service';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-
 @Injectable()
 
 export class PublicationAPIService {
+  // http://10.0.2.15/nanoTest/service.php?object=publication&option=list
+  // /nanoTest/service.php?object=publication&option=list
   private server: string = 'http://10.0.2.15';
   private serverApp: string = '/nanoTest';
-  private servicesPath: string = '/service.php?object=nano';
-  private serviceName: string = '&option=list';
-  private body: any;
+  private servicesPath: string = '/service.php?object=publication';
   private wsUrl: string;
-  // http://10.0.2.15/nanoTest/service.php?object=nano&option=list
+  
+  
+  private headerDict: { 'Content-Type': string;
+                        'Accept': string;
+                        'Access-Control-Allow-Headers': string; };
+  private requestedOptions: { headers: HttpHeaders; };
 
-  //  http://10.0.2.15
-  //  /nanoTest
-  //  /service.php?object=nano
-  //  &option=list
+
+
 
   constructor(  private http: HttpClient,
                 private messageService: MessageService) {
     this.wsUrl = this.server + this.serverApp + this.servicesPath
+
+    this.headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
+    this.requestedOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(this.headerDict), 
+    };
+
   }
 
-
-  getAllPublications(): Observable<any> {
+  getAllPublications(): Observable<any> {                                                                                                                                   
     let  serviceName = '&option=list';
-    // alert(url);
-    return this.http.get(this.wsUrl + serviceName)
-      .pipe( catchError( this.handleError<any>('getAllPublications', []) ));
+    let url = this.wsUrl + serviceName;
+    return this.http
+     .get(url)
+     .pipe( catchError( this.handleError<any>('getAllPublications', []) ));
   }
+
+
+
+
+
+
+
 
 
 

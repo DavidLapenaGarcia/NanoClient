@@ -19,7 +19,7 @@ export class FindListComponent implements OnInit, OnDestroy {
   pubFilterd: Publication;
   subscription: Subscription;
 
-  // TODO: delete pubsT
+  // TODO: delete pubs
   public pubsT: Publication[] = [
     new Publication(3, '12345A', ' Title3', 'Abstract3', 'David3', 'Review3', 'httml3', 'https3',
       'Retrieval3', 'Crossref3', 'Article3', 'Scopus3',

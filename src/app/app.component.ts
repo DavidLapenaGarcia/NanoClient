@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './shared/authentication.service';
+import { AuthenticationService } from './services';
 
-import { Publication } from './model/publication';
-import { User } from './model/user';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

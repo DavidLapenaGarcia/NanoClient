@@ -1,5 +1,5 @@
 import { Publication } from './../model/publication';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Author } from '../model/author';
 import { Keyword } from '../model/keyword';
 import { Subject } from 'rxjs';
@@ -7,7 +7,6 @@ import { PublicationAPIService } from './publication-api.service';
 
 @Injectable ()
 export class PublicationService{
-    // recipieSelected = new EventEmitter<Recipe>();
 
     private pubs: Publication[] = [
         new Publication(1, '1234A', ' Title1', 'Abstract1', 'David', 'Review1', 'httml1', 'https1',
